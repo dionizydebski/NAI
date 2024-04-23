@@ -25,7 +25,7 @@ def get_train_arrey(train_file_array):
         for j in range(len(train_array[i])):
             train_array[i][j] = list(train_array[i][j])
             train_array[i][j][0] = list(train_array[i][j][0])
-            for k in range(len(train_array[4])):
+            for k in range(len(train_array[len(train_array)-1])):
                 if train_array[i][j][0][1] == train_array[len(train_array)-1][k][0][0] and i != len(train_array)-1:
                     train_array[i][j][1] /= train_array[len(train_array)-1][k][1]
 
@@ -45,7 +45,7 @@ def calculate_probability(train_array, arrey_to_check):
                     wygladzenie = False
             # wygladzanie
             if wygladzenie:
-                probability *= (1 / (train_array[len(train_array)-1][i][1] + len(train_array[j])//2 + 1))
+                probability *= (1 / (train_array[len(train_array)-1][i][1] + len(train_array[j]) // len(train_array[len(train_array)-1]) + 1))
         if probability > best_probability:
             best_probability = probability
             decision_arg = train_array[len(train_array)-1][i][0][0]
