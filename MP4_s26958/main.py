@@ -28,6 +28,11 @@ def get_train_arrey(train_file_array):
             for k in range(len(train_array[len(train_array)-1])):
                 if train_array[i][j][0][1] == train_array[len(train_array)-1][k][0][0] and i != len(train_array)-1:
                     train_array[i][j][1] /= train_array[len(train_array)-1][k][1]
+                elif train_array[i][j][0][1] == train_array[len(train_array)-1][k][0][0] and i == len(train_array)-1:
+                    suma = 0
+                    for i in range(len(train_array[len(train_array)-1])):
+                        suma += train_array[train_array[len(train_array)-1]][i][1]
+                    train_array[i][j][1] /= suma
 
 
     return train_array
@@ -36,7 +41,7 @@ def calculate_probability(train_array, arrey_to_check):
     best_probability = 0
     decision_arg = ""
     for i in range(len(train_array[len(train_array)-1])):
-        probability = 1
+        probability = train_array[len(train_array)-1][i][1]
         for j in range(len(arrey_to_check)):
             wygladzenie = True
             for k in range(len(train_array[j])):
